@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--New Post View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="newPost" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="NewPostViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eU3-EK-1Xh">
+                                <rect key="frame" x="0.0" y="753" width="393" height="65"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DjG-ck-hhv">
+                                        <rect key="frame" x="10" y="10" width="373" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ThN-N7-In2">
+                                                <rect key="frame" x="0.0" y="0.0" width="181.66666666666666" height="45"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Library"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rT-n7-UHC">
+                                                <rect key="frame" x="191.66666666666663" y="0.0" width="181.33333333333337" height="45"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Camera"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="DjG-ck-hhv" firstAttribute="top" secondItem="eU3-EK-1Xh" secondAttribute="top" constant="10" id="D2r-xb-Led"/>
+                                    <constraint firstAttribute="height" constant="65" id="arc-sB-KNH"/>
+                                    <constraint firstAttribute="trailing" secondItem="DjG-ck-hhv" secondAttribute="trailing" constant="10" id="j10-Vi-VBY"/>
+                                    <constraint firstAttribute="bottom" secondItem="DjG-ck-hhv" secondAttribute="bottom" constant="10" id="p9e-fI-Hf4"/>
+                                    <constraint firstItem="DjG-ck-hhv" firstAttribute="leading" secondItem="eU3-EK-1Xh" secondAttribute="leading" constant="10" id="qct-cn-wzh"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ni1-X6-DTo">
+                                <rect key="frame" x="0.0" y="59" width="393" height="694"/>
+                                <connections>
+                                    <segue destination="sfD-4C-RT2" kind="embed" id="dzO-DY-zZ7"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="eU3-EK-1Xh" secondAttribute="bottom" id="GBw-1E-w3x"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eU3-EK-1Xh" secondAttribute="trailing" id="M40-MT-3w2"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ni1-X6-DTo" secondAttribute="trailing" id="nHM-rA-SS7"/>
+                            <constraint firstItem="ni1-X6-DTo" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="rax-jC-51W"/>
+                            <constraint firstItem="ni1-X6-DTo" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="wSu-74-fX0"/>
+                            <constraint firstItem="eU3-EK-1Xh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="waU-l3-iEt"/>
+                            <constraint firstItem="eU3-EK-1Xh" firstAttribute="top" secondItem="ni1-X6-DTo" secondAttribute="bottom" id="z4o-dw-rDE"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="58" y="-2"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="NMA-Q8-rJH">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sfD-4C-RT2" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4fp-Zs-QOL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821" y="-194"/>
+        </scene>
+        <!--Library View Controller-->
+        <scene sceneID="ptK-0y-Seh">
+            <objects>
+                <viewController storyboardIdentifier="LibraryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OSl-IR-12c" customClass="LibraryViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IlT-hH-V49">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="q8K-el-J4t">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Jgx-X4-pmX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="upl-mK-RpM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="q8K-el-J4t" firstAttribute="top" secondItem="upl-mK-RpM" secondAttribute="top" id="85h-6y-nLr"/>
+                            <constraint firstItem="q8K-el-J4t" firstAttribute="leading" secondItem="upl-mK-RpM" secondAttribute="leading" id="jJv-Up-e0K"/>
+                            <constraint firstItem="upl-mK-RpM" firstAttribute="trailing" secondItem="q8K-el-J4t" secondAttribute="trailing" id="xn0-nP-krh"/>
+                            <constraint firstItem="upl-mK-RpM" firstAttribute="bottom" secondItem="q8K-el-J4t" secondAttribute="bottom" id="ylP-NE-pVQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="q8K-el-J4t" id="rWQ-BH-Jwd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NZA-Ae-k6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1512" y="37"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="qx6-yk-EXU">
+            <objects>
+                <viewController storyboardIdentifier="CameraViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rLP-a4-O1u" customClass="CameraViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ixe-P1-6Md">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lgg-0M-Fny">
+                                <rect key="frame" x="161.66666666666666" y="708" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="eSh-QR-hgT"/>
+                                    <constraint firstAttribute="width" constant="70" id="hcd-bf-gQK"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="camera_capture_icon"/>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hk4-Tb-cag" customClass="SimpleCameraView" customModule="InstagramApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="393"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Hk4-Tb-cag" secondAttribute="height" multiplier="1:1" id="XNa-F3-wg9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a7O-Ti-5pl"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="a7O-Ti-5pl" firstAttribute="trailing" secondItem="Hk4-Tb-cag" secondAttribute="trailing" id="QZV-UH-U6E"/>
+                            <constraint firstItem="Hk4-Tb-cag" firstAttribute="leading" secondItem="a7O-Ti-5pl" secondAttribute="leading" id="U3u-v1-Lav"/>
+                            <constraint firstItem="Lgg-0M-Fny" firstAttribute="centerX" secondItem="ixe-P1-6Md" secondAttribute="centerX" id="g2w-dA-Ewr"/>
+                            <constraint firstItem="a7O-Ti-5pl" firstAttribute="bottom" secondItem="Lgg-0M-Fny" secondAttribute="bottom" constant="40" id="gKZ-QZ-hqd"/>
+                            <constraint firstItem="Hk4-Tb-cag" firstAttribute="top" secondItem="a7O-Ti-5pl" secondAttribute="top" id="idb-uo-kXW"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="488-fF-Xzt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="456"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera_capture_icon" width="70" height="70"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
