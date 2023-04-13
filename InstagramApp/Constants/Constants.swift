@@ -44,4 +44,6 @@ class Constants {
     
     static let libCollectionViewXib = "LibraryCollectionViewCell"
     static let libCollectionViewCellID = "LibraryCollectionViewCell"
+    
+    static let pageViewControllerID = "newPosts"
 }

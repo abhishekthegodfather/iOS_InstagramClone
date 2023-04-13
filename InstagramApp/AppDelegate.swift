@@ -10,6 +10,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var tabBarDelegate = TabBarDelgate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -50,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         tabController.viewControllers = vcs
+        tabController.delegate = tabBarDelegate
 //        tabController.tabBar.isTranslucent = false
         if let items = tabController.tabBar.items {
             for item in items {

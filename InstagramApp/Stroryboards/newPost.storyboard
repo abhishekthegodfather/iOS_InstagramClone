@@ -69,10 +69,10 @@
             </objects>
             <point key="canvasLocation" x="58" y="-2"/>
         </scene>
-        <!--Page View Controller-->
+        <!--New Post Page View Controller-->
         <scene sceneID="NMA-Q8-rJH">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sfD-4C-RT2" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="newPosts" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sfD-4C-RT2" customClass="NewPostPageViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fp-Zs-QOL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="821" y="-194"/>
