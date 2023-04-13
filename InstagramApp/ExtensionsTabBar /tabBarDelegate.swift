@@ -38,7 +38,7 @@ class TabBarDelgate : NSObject, UITabBarControllerDelegate {
         
         // show the pageView Controller at viewcontroller at index 2
         if indexViewController == 2 {
-            let pageViewController = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.pageViewControllerID) as? NewPostPageViewController
+            let pageViewController = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.newPostVCID) as? NewPostViewController
             let navController = UINavigationController(rootViewController: pageViewController ??  UIPageViewController())
             selectedController.present(navController, animated: true, completion: nil)
             return false

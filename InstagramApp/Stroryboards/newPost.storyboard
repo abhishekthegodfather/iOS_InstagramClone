@@ -64,6 +64,10 @@
                             <constraint firstItem="eU3-EK-1Xh" firstAttribute="top" secondItem="ni1-X6-DTo" secondAttribute="bottom" id="z4o-dw-rDE"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="libraryButttonAction" destination="ThN-N7-In2" id="NIz-Y2-xST"/>
+                        <outlet property="photoButtonAction" destination="3rT-n7-UHC" id="QKK-nO-PLo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
