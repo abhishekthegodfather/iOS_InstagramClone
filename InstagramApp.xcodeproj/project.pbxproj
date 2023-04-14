@@ -35,6 +35,11 @@
 		FC49E0A329E804B90038825A /* tabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0A229E804B90038825A /* tabBarDelegate.swift */; };
 		FC49E0A629E814E20038825A /* NewPageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0A529E814E20038825A /* NewPageConstants.swift */; };
 		FC49E0A829E83BE40038825A /* BackendLocalAPIS in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0A729E83BE40038825A /* BackendLocalAPIS */; };
+		FC49E0AB29E92D530038825A /* CustomSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0AA29E92D530038825A /* CustomSegmentedView.swift */; };
+		FC49E0AE29E953BD0038825A /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0AD29E953BD0038825A /* ActivityView.xib */; };
+		FC49E0B029E953DA0038825A /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0AF29E953DA0038825A /* ActivityView.swift */; };
+		FC49E0B329E954430038825A /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0B129E954430038825A /* ActivityTableViewCell.swift */; };
+		FC49E0B429E954430038825A /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0B229E954430038825A /* ActivityTableViewCell.xib */; };
 		FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3929E680C400AD7BC2 /* Home.storyboard */; };
 		FCF08A3C29E680D500AD7BC2 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3B29E680D500AD7BC2 /* Search.storyboard */; };
 		FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */; };
@@ -78,6 +83,11 @@
 		FC49E0A229E804B90038825A /* tabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarDelegate.swift; sourceTree = "<group>"; };
 		FC49E0A529E814E20038825A /* NewPageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPageConstants.swift; sourceTree = "<group>"; };
 		FC49E0A729E83BE40038825A /* BackendLocalAPIS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BackendLocalAPIS; sourceTree = "<group>"; };
+		FC49E0AA29E92D530038825A /* CustomSegmentedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedView.swift; sourceTree = "<group>"; };
+		FC49E0AD29E953BD0038825A /* ActivityView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
+		FC49E0AF29E953DA0038825A /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		FC49E0B129E954430038825A /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		FC49E0B229E954430038825A /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
 		FCF08A3929E680C400AD7BC2 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FCF08A3B29E680D500AD7BC2 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPost.storyboard; sourceTree = "<group>"; };
@@ -122,6 +132,7 @@
 			children = (
 				FC49E0A729E83BE40038825A /* BackendLocalAPIS */,
 				FC49E0A129E8048E0038825A /* ExtensionsTabBar  */,
+				FC49E0A929E92D2A0038825A /* ActivityView */,
 				FC49E09529E7FD2F0038825A /* NewPostViews */,
 				FC44F5A929E6A153004CF648 /* Constants */,
 				FC44F5A829E6A0CE004CF648 /* HomeViews */,
@@ -235,6 +246,26 @@
 			path = newPostConstant;
 			sourceTree = "<group>";
 		};
+		FC49E0A929E92D2A0038825A /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				FC49E0AC29E953960038825A /* ActivityTableResue */,
+				FC49E0AA29E92D530038825A /* CustomSegmentedView.swift */,
+				FC49E0B129E954430038825A /* ActivityTableViewCell.swift */,
+				FC49E0B229E954430038825A /* ActivityTableViewCell.xib */,
+			);
+			path = ActivityView;
+			sourceTree = "<group>";
+		};
+		FC49E0AC29E953960038825A /* ActivityTableResue */ = {
+			isa = PBXGroup;
+			children = (
+				FC49E0AD29E953BD0038825A /* ActivityView.xib */,
+				FC49E0AF29E953DA0038825A /* ActivityView.swift */,
+			);
+			path = ActivityTableResue;
+			sourceTree = "<group>";
+		};
 		FCF08A3829E680A200AD7BC2 /* Stroryboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,7 +354,9 @@
 				FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */,
 				FC49E0A829E83BE40038825A /* BackendLocalAPIS in Resources */,
 				FC49E09029E7C4BE0038825A /* SearchCollectionViewCell.xib in Resources */,
+				FC49E0AE29E953BD0038825A /* ActivityView.xib in Resources */,
 				FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */,
+				FC49E0B429E954430038825A /* ActivityTableViewCell.xib in Resources */,
 				FC49E08A29E6EB5C0038825A /* StroyCollectionViewCell.xib in Resources */,
 				FC44F5AF29E6A1E0004CF648 /* StoryTableViewCell.xib in Resources */,
 				E147A08F2159176400AD9178 /* LaunchScreen.storyboard in Resources */,
@@ -351,12 +384,15 @@
 				FCF08A4529E6853F00AD7BC2 /* HomeViewController.swift in Sources */,
 				FC49E0A629E814E20038825A /* NewPageConstants.swift in Sources */,
 				E1E440B22163ED050034FD40 /* ActivityData.swift in Sources */,
+				FC49E0AB29E92D530038825A /* CustomSegmentedView.swift in Sources */,
 				FC49E09229E7C5D30038825A /* CustomSearchController.swift in Sources */,
 				FCF08A4B29E6858100AD7BC2 /* ProfileViewController.swift in Sources */,
 				FC44F5AB29E6A162004CF648 /* Constants.swift in Sources */,
+				FC49E0B029E953DA0038825A /* ActivityView.swift in Sources */,
 				FCF08A4D29E6859700AD7BC2 /* ActivityViewController.swift in Sources */,
 				FC49E09B29E800830038825A /* CameraViewController.swift in Sources */,
 				FC49E09729E800350038825A /* NewPostPageViewController.swift in Sources */,
+				FC49E0B329E954430038825A /* ActivityTableViewCell.swift in Sources */,
 				FC44F5B629E6AB1B004CF648 /* FeedTableViewCell.swift in Sources */,
 				FC49E09429E7D0190038825A /* CustomCollectionLayout.swift in Sources */,
 				E147A0852159176200AD9178 /* AppDelegate.swift in Sources */,

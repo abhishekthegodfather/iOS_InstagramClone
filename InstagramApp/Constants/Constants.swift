@@ -46,4 +46,7 @@ class Constants {
     static let libCollectionViewCellID = "LibraryCollectionViewCell"
     
     static let pageViewControllerID = "newPosts"
+    
+    static let ActivityTableViewCellXib = "ActivityTableViewCell"
+    static let ActivityTableViewCellID = "ActivityTableViewCell"
 }
