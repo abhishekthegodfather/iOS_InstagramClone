@@ -61,6 +61,9 @@
 		FCF2D09529E9A0AB00EB8895 /* AnimatedLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2D09429E9A0AB00EB8895 /* AnimatedLoginView.swift */; };
 		FCF2D09929E9A7D300EB8895 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2D09829E9A7D300EB8895 /* LoginViewController.swift */; };
 		FCF2D09B29E9A8F900EB8895 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2D09A29E9A8F900EB8895 /* SignUpViewController.swift */; };
+		FCF2D09D29E9C3C500EB8895 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FCF2D09C29E9C3C500EB8895 /* GoogleService-Info.plist */; };
+		FCF2D0A129E9C72000EB8895 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2D0A029E9C72000EB8895 /* HelperMethods.swift */; };
+		FCF2D0A329E9C72D00EB8895 /* ExtensionMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2D0A229E9C72D00EB8895 /* ExtensionMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +125,9 @@
 		FCF2D09429E9A0AB00EB8895 /* AnimatedLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLoginView.swift; sourceTree = "<group>"; };
 		FCF2D09829E9A7D300EB8895 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FCF2D09A29E9A8F900EB8895 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		FCF2D09C29E9C3C500EB8895 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FCF2D0A029E9C72000EB8895 /* HelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		FCF2D0A229E9C72D00EB8895 /* ExtensionMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,6 +195,7 @@
 				E1D28C3021629A1300DB621F /* Library */,
 				E147A0842159176200AD9178 /* AppDelegate.swift */,
 				E147A08D2159176400AD9178 /* LaunchScreen.storyboard */,
+				FCF2D09C29E9C3C500EB8895 /* GoogleService-Info.plist */,
 				E147A0902159176400AD9178 /* Info.plist */,
 				E147A08B2159176300AD9178 /* Assets.xcassets */,
 			);
@@ -239,6 +246,8 @@
 		FC44F5A929E6A153004CF648 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				FCF2D09F29E9C70B00EB8895 /* Extensions */,
+				FCF2D09E29E9C6F800EB8895 /* HelperClass */,
 				FC44F5AA29E6A162004CF648 /* Constants.swift */,
 			);
 			path = Constants;
@@ -376,6 +385,22 @@
 			path = LoginViews;
 			sourceTree = "<group>";
 		};
+		FCF2D09E29E9C6F800EB8895 /* HelperClass */ = {
+			isa = PBXGroup;
+			children = (
+				FCF2D0A029E9C72000EB8895 /* HelperMethods.swift */,
+			);
+			path = HelperClass;
+			sourceTree = "<group>";
+		};
+		FCF2D09F29E9C70B00EB8895 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FCF2D0A229E9C72D00EB8895 /* ExtensionMethods.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -454,6 +479,7 @@
 				FCF08A4229E6813600AD7BC2 /* Activity.storyboard in Resources */,
 				FCF2D08629E9762B00EB8895 /* ProfileHeaderTableViewCell.xib in Resources */,
 				FCF08A3C29E680D500AD7BC2 /* Search.storyboard in Resources */,
+				FCF2D09D29E9C3C500EB8895 /* GoogleService-Info.plist in Resources */,
 				FC49E0A029E8025C0038825A /* LibraryCollectionViewCell.xib in Resources */,
 				E147A08C2159176300AD9178 /* Assets.xcassets in Resources */,
 			);
@@ -525,10 +551,12 @@
 				FC49E09229E7C5D30038825A /* CustomSearchController.swift in Sources */,
 				FCF08A4B29E6858100AD7BC2 /* ProfileViewController.swift in Sources */,
 				FC44F5AB29E6A162004CF648 /* Constants.swift in Sources */,
+				FCF2D0A129E9C72000EB8895 /* HelperMethods.swift in Sources */,
 				FC49E0B029E953DA0038825A /* ActivityView.swift in Sources */,
 				FCF08A4D29E6859700AD7BC2 /* ActivityViewController.swift in Sources */,
 				FC49E09B29E800830038825A /* CameraViewController.swift in Sources */,
 				FC49E09729E800350038825A /* NewPostPageViewController.swift in Sources */,
+				FCF2D0A329E9C72D00EB8895 /* ExtensionMethods.swift in Sources */,
 				FCF2D09929E9A7D300EB8895 /* LoginViewController.swift in Sources */,
 				FCF2D09B29E9A8F900EB8895 /* SignUpViewController.swift in Sources */,
 				FC49E0B329E954430038825A /* ActivityTableViewCell.swift in Sources */,
