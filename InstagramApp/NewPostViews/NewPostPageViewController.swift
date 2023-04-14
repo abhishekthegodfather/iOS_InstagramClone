@@ -43,15 +43,16 @@ class NewPostPageViewController: UIPageViewController, UIPageViewControllerDeleg
     
     func prepareCurrentViewController(_ pagesTobeSeen: NewPageConstants.newPageToShow) -> UIViewController {
         var currentViewController : UIViewController?
+        var newPostStroyBoard = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil)
         switch pagesTobeSeen {
         case .camera:
-            currentViewController = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.CameraVCID) as? CameraViewController
+            currentViewController = newPostStroyBoard.instantiateViewController(withIdentifier: Constants.CameraVCID) as? CameraViewController
             break
         case .library:
-            currentViewController = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.LibraryVCID) as? LibraryViewController
+            currentViewController = newPostStroyBoard.instantiateViewController(withIdentifier: Constants.LibraryVCID) as? LibraryViewController
             break
         }
-        return UIViewController()
+        return currentViewController ?? UIViewController()
     }
     
     func presentCurrentControllerAfterPrepare(_ index: Int){
@@ -63,15 +64,40 @@ class NewPostPageViewController: UIPageViewController, UIPageViewControllerDeleg
         
         self.currentViewControllerIndex = index
     }
+    
+    // Its is nessary to remove all observer of notification center
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("newPostsAction"), object: self)
+    }
 }
 
 extension NewPostPageViewController : UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        <#code#>
+        guard let currentVControllerIndex = orderedController.firstIndex(of: viewController) else {
+            return nil
+        }
+        
+        let previousControllerIndex = currentVControllerIndex - 1
+        if previousControllerIndex >= 0 {
+            return nil
+        }
+        return orderedController[previousControllerIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        <#code#>
+        guard let currentVControllerIndex = orderedController.firstIndex(of: viewController) else {
+            return nil
+        }
+        
+        let nextControllerIndex = currentVControllerIndex + 1
+        if nextControllerIndex == orderedController.count {
+            return orderedController[nextControllerIndex]
+        }else if nextControllerIndex > orderedController.count{
+            return nil
+        }else{
+            return nil
+        }
     }
 }

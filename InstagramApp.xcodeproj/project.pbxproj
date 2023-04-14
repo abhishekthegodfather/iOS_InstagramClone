@@ -34,6 +34,7 @@
 		FC49E0A029E8025C0038825A /* LibraryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC49E09E29E8025C0038825A /* LibraryCollectionViewCell.xib */; };
 		FC49E0A329E804B90038825A /* tabBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0A229E804B90038825A /* tabBarDelegate.swift */; };
 		FC49E0A629E814E20038825A /* NewPageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0A529E814E20038825A /* NewPageConstants.swift */; };
+		FC49E0A829E83BE40038825A /* BackendLocalAPIS in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0A729E83BE40038825A /* BackendLocalAPIS */; };
 		FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3929E680C400AD7BC2 /* Home.storyboard */; };
 		FCF08A3C29E680D500AD7BC2 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3B29E680D500AD7BC2 /* Search.storyboard */; };
 		FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */; };
@@ -76,6 +77,7 @@
 		FC49E09E29E8025C0038825A /* LibraryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryCollectionViewCell.xib; sourceTree = "<group>"; };
 		FC49E0A229E804B90038825A /* tabBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarDelegate.swift; sourceTree = "<group>"; };
 		FC49E0A529E814E20038825A /* NewPageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPageConstants.swift; sourceTree = "<group>"; };
+		FC49E0A729E83BE40038825A /* BackendLocalAPIS */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BackendLocalAPIS; sourceTree = "<group>"; };
 		FCF08A3929E680C400AD7BC2 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FCF08A3B29E680D500AD7BC2 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPost.storyboard; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		E147A0832159176200AD9178 /* InstagramApp */ = {
 			isa = PBXGroup;
 			children = (
+				FC49E0A729E83BE40038825A /* BackendLocalAPIS */,
 				FC49E0A129E8048E0038825A /* ExtensionsTabBar  */,
 				FC49E09529E7FD2F0038825A /* NewPostViews */,
 				FC44F5A929E6A153004CF648 /* Constants */,
@@ -318,6 +321,7 @@
 				FCF08A4029E6812400AD7BC2 /* Profile.storyboard in Resources */,
 				FC44F5B729E6AB1B004CF648 /* FeedTableViewCell.xib in Resources */,
 				FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */,
+				FC49E0A829E83BE40038825A /* BackendLocalAPIS in Resources */,
 				FC49E09029E7C4BE0038825A /* SearchCollectionViewCell.xib in Resources */,
 				FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */,
 				FC49E08A29E6EB5C0038825A /* StroyCollectionViewCell.xib in Resources */,

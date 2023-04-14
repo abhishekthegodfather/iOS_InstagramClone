@@ -9,11 +9,37 @@
 import UIKit
 
 class CameraViewController: UIViewController {
-
+    
+    
+    @IBOutlet weak var simpleCameraView: SimpleCameraView!
+    @IBOutlet weak var captureBtn: UIButton!
+    var simpleCameraRef : SimpleCamera?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        captureBtn.addTarget(self, action: #selector(camBtnAction(_ :)), for: .touchUpInside)
+        simpleCameraRef = SimpleCamera(cameraView: simpleCameraView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        simpleCameraRef?.startSession()
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        simpleCameraRef?.stopSession()
+    }
+    
+    @objc func camBtnAction(_ sender: UIButton){
+        if simpleCameraRef?.currentCaptureMode == .photo {
+            simpleCameraRef?.takePhoto(photoCompletionHandler: { imageData, success in
+                if success {
+                    print("Successfully photo is taken")
+                }
+            })
+        }
     }
     
 }
