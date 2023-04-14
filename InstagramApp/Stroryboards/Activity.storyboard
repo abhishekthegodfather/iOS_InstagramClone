@@ -17,14 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-YD-muY">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejd-YD-muY" customClass="CustomSegmentedView" customModule="InstagramApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="393" height="60"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="9qZ-uC-p0m"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-Il-vha">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgy-Il-vha">
                                 <rect key="frame" x="0.0" y="119" width="393" height="699"/>
                             </scrollView>
                         </subviews>
@@ -40,6 +40,10 @@
                             <constraint firstItem="ejd-YD-muY" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="wfc-bj-fM2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="CustomSegement" destination="ejd-YD-muY" id="D11-Tk-EVy"/>
+                        <outlet property="scrollView" destination="dgy-Il-vha" id="Qs6-ws-6HD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

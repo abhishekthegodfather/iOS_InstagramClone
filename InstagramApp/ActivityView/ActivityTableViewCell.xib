@@ -24,7 +24,7 @@
                             <constraint firstAttribute="width" constant="60" id="lrG-wD-CVB"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdB-Cx-tM9">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdB-Cx-tM9">
                         <rect key="frame" x="85" y="9.9999999999999982" width="286" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -36,7 +36,6 @@
                     <constraint firstItem="pdB-Cx-tM9" firstAttribute="top" secondItem="IKu-Qk-Bhm" secondAttribute="top" id="8uA-mv-pwf"/>
                     <constraint firstAttribute="trailing" secondItem="pdB-Cx-tM9" secondAttribute="trailing" constant="10" id="94F-iR-dVE"/>
                     <constraint firstItem="IKu-Qk-Bhm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="M8Z-k8-H6o"/>
-                    <constraint firstAttribute="bottom" secondItem="IKu-Qk-Bhm" secondAttribute="bottom" constant="10" id="Sw4-9m-7VX"/>
                     <constraint firstItem="IKu-Qk-Bhm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="g7N-xa-Adk"/>
                     <constraint firstItem="pdB-Cx-tM9" firstAttribute="leading" secondItem="IKu-Qk-Bhm" secondAttribute="trailing" constant="15" id="zNu-pF-m3Y"/>
                 </constraints>

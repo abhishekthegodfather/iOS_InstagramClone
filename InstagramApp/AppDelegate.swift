@@ -38,8 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             (homeVC ?? UIViewController(), UIImage(named: "home_tab_icon") ?? UIImage(), UIImage(named: "home_selected_tab_icon") ?? UIImage()),
             (searchVC ?? UIViewController(), UIImage(named: "search_tab_icon") ?? UIImage(), UIImage(named: "search_selected_tab_icon") ?? UIImage()),
             (newPostVC ?? UIViewController(), UIImage(named: "post_tab_icon") ?? UIImage(), UIImage(named: "post_tab_icon") ?? UIImage()),
+            (activityVC ?? UIViewController(), UIImage(named: "activity_tab_icon") ?? UIImage(), UIImage(named: "activity_selected_tab_icon") ?? UIImage()),
             (profileVC ?? UIViewController(), UIImage(named: "profile_tab_icon") ?? UIImage(), UIImage(named: "profile_selected_tab_icon") ?? UIImage()),
-            (activityVC ?? UIViewController(), UIImage(named: "activity_tab_icon") ?? UIImage(), UIImage(named: "activity_selected_tab_icon") ?? UIImage())
             ]
         
         let vcs = vcData.map { (viewControllers, defaultImages, selectedImages) -> UINavigationController in

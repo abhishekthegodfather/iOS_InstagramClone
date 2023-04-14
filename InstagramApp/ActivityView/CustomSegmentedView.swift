@@ -40,6 +40,7 @@ class CustomSegmentedView: UIView {
         for title in self.segmentedButtonTitle {
             var aSampleSegmentedButton = UIButton.init(type: .system)
             aSampleSegmentedButton.setTitle(title, for: .normal)
+            aSampleSegmentedButton.setTitleColor(textAttribute, for: .normal)
             aSampleSegmentedButton.addTarget(self, action: #selector(segmentedButtonTapped(_ :)), for: .touchUpInside)
             self.segemenedButton.append(aSampleSegmentedButton)
         }
@@ -83,14 +84,14 @@ class CustomSegmentedView: UIView {
     }
     
     
-    func updatedSegmentedControl() {
+    func updatedSegmentedControl(_ index: Int) {
         for aSegmentedButton in self.segemenedButton {
             aSegmentedButton.setTitleColor(textAttribute, for: .normal)
         }
-        let startSelectorPos = frame.width / CGFloat(self.segemenedButton.count) * CGFloat(selectedSegmentedIndex)
+        let startSelectorPos = frame.width / CGFloat(self.segemenedButton.count) * CGFloat(index)
         UIView.animate(withDuration: 0.3) {
             self.sectorCutterView?.frame.origin.x = startSelectorPos
         }
-        self.segemenedButton[self.selectedSegmentedIndex].setTitleColor(selectorColor, for: .normal)
+        self.segemenedButton[index].setTitleColor(selectorColor, for: .normal)
     }
 }

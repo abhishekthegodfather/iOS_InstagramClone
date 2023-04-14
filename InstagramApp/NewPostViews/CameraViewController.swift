@@ -19,6 +19,7 @@ class CameraViewController: UIViewController {
         super.viewDidLoad()
         captureBtn.addTarget(self, action: #selector(camBtnAction(_ :)), for: .touchUpInside)
         simpleCameraRef = SimpleCamera(cameraView: simpleCameraView)
+        self.captureBtn.setTitle("", for: .normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -24,6 +24,7 @@ class ActivityView: UIView {
         tableView.dataSource = self
         tableView.register(ActivityTableViewCell.nib(), forCellReuseIdentifier: ActivityTableViewCell.cellId)
         tableView.tableFooterView = UIView()
+        tableView.bounces = false
     }
 }
 

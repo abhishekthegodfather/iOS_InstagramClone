@@ -49,4 +49,6 @@ class Constants {
     
     static let ActivityTableViewCellXib = "ActivityTableViewCell"
     static let ActivityTableViewCellID = "ActivityTableViewCell"
+    
+    static let ActivityNibName = "ActivityView"
 }
