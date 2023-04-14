@@ -51,4 +51,12 @@ class Constants {
     static let ActivityTableViewCellID = "ActivityTableViewCell"
     
     static let ActivityNibName = "ActivityView"
+    
+    static let ProfileHeaderTableViewCellXib = "ProfileHeaderTableViewCell"
+    static let ProfileHeaderTableViewCellId = "ProfileHeaderTableViewCell"
+    
+    static let ProfileViewStyleTableViewCellXib = "ProfileViewStyleTableViewCell"
+    static let ProfileViewStyleTableViewCellID = "ProfileViewStyleTableViewCell"
+    
+    static let signUpSegueNameID = "signUpSegue"
 }
