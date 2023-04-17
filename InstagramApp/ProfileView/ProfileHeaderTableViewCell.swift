@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol profileImageDidTouch {
+    func showProfileImageAfterTouch()
+}
+
 class ProfileHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
@@ -17,6 +21,8 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var followingCount: UILabel!
     @IBOutlet weak var followBtn: UIButton!
     var profileType : ProfileViewConstant.ProfileConstant = .personalUser
+    var delegate : profileImageDidTouch?
+    var tapGestureForImage : UITapGestureRecognizer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +37,13 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         followBtn.layer.cornerRadius = CGFloat(3.0)
         profileImageView.backgroundColor = .gray
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
+        
+        tapGestureForImage = UITapGestureRecognizer()
+        tapGestureForImage?.addTarget(self, action: #selector(changeORshowImage(_ :)))
+    }
+    
+    @objc func changeORshowImage(_ sender: UITapGestureRecognizer){
+        delegate?.showProfileImageAfterTouch()
     }
     
     

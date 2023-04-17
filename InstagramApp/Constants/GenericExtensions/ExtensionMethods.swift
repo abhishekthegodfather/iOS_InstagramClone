@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 extension UIViewController {
     class func showLoadingIndicator(_ mainView: UIView) -> UIView {
@@ -30,5 +31,19 @@ extension UIViewController {
         DispatchQueue.main.async {
             spinnerView.removeFromSuperview()
         }
+    }
+}
+
+extension UIImage {
+    func resize(_ toWidth: CGFloat) -> UIImage? {
+        if self.size.width <= toWidth {
+            return self
+        }
+        
+        let canvasSize = CGSize(width: toWidth, height: CGFloat(ceil(toWidth*size.height)/size.width))
+        UIGraphicsBeginImageContextWithOptions(canvasSize, false, scale)
+        defer {UIGraphicsEndImageContext()}
+        draw(in: CGRect(origin: .zero, size: canvasSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

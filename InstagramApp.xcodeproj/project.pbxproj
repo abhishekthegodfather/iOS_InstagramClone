@@ -41,6 +41,7 @@
 		FC49E0B029E953DA0038825A /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0AF29E953DA0038825A /* ActivityView.swift */; };
 		FC49E0B329E954430038825A /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0B129E954430038825A /* ActivityTableViewCell.swift */; };
 		FC49E0B429E954430038825A /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0B229E954430038825A /* ActivityTableViewCell.xib */; };
+		FCDE276329ED496F00CB0C31 /* extensionProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */; };
 		FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3929E680C400AD7BC2 /* Home.storyboard */; };
 		FCF08A3C29E680D500AD7BC2 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3B29E680D500AD7BC2 /* Search.storyboard */; };
 		FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */; };
@@ -105,6 +106,7 @@
 		FC49E0AF29E953DA0038825A /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		FC49E0B129E954430038825A /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		FC49E0B229E954430038825A /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
+		FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionProfileCells.swift; sourceTree = "<group>"; };
 		FCF08A3929E680C400AD7BC2 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FCF08A3B29E680D500AD7BC2 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPost.storyboard; sourceTree = "<group>"; };
@@ -246,7 +248,7 @@
 		FC44F5A929E6A153004CF648 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				FCF2D09F29E9C70B00EB8895 /* Extensions */,
+				FCF2D09F29E9C70B00EB8895 /* GenericExtensions */,
 				FCF2D09E29E9C6F800EB8895 /* HelperClass */,
 				FC44F5AA29E6A162004CF648 /* Constants.swift */,
 			);
@@ -321,6 +323,14 @@
 			path = ActivityTableResue;
 			sourceTree = "<group>";
 		};
+		FCDE276129ED493800CB0C31 /* ExtensionProfileCells */ = {
+			isa = PBXGroup;
+			children = (
+				FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */,
+			);
+			path = ExtensionProfileCells;
+			sourceTree = "<group>";
+		};
 		FCF08A3829E680A200AD7BC2 /* Stroryboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +348,7 @@
 		FCF08A4329E6852100AD7BC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FCDE276129ED493800CB0C31 /* ExtensionProfileCells */,
 				FCF2D09629E9A79300EB8895 /* LoginViews */,
 				FCF08A4429E6853F00AD7BC2 /* HomeViewController.swift */,
 				FCF08A4629E6855B00AD7BC2 /* SearchViewController.swift */,
@@ -393,12 +404,12 @@
 			path = HelperClass;
 			sourceTree = "<group>";
 		};
-		FCF2D09F29E9C70B00EB8895 /* Extensions */ = {
+		FCF2D09F29E9C70B00EB8895 /* GenericExtensions */ = {
 			isa = PBXGroup;
 			children = (
 				FCF2D0A229E9C72D00EB8895 /* ExtensionMethods.swift */,
 			);
-			path = Extensions;
+			path = GenericExtensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -544,6 +555,7 @@
 				FC49E0A329E804B90038825A /* tabBarDelegate.swift in Sources */,
 				FCF2D08929E979EC00EB8895 /* ProfileViewStyleTableViewCell.swift in Sources */,
 				FCF2D09529E9A0AB00EB8895 /* AnimatedLoginView.swift in Sources */,
+				FCDE276329ED496F00CB0C31 /* extensionProfileCells.swift in Sources */,
 				FCF08A4529E6853F00AD7BC2 /* HomeViewController.swift in Sources */,
 				FC49E0A629E814E20038825A /* NewPageConstants.swift in Sources */,
 				E1E440B22163ED050034FD40 /* ActivityData.swift in Sources */,
