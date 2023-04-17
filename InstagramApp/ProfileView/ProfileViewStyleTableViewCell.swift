@@ -18,6 +18,8 @@ class ProfileViewStyleTableViewCell: UITableViewCell {
         // Initialization code
         button1.addTarget(self, action: #selector(button1Action(_ :)), for: .touchUpInside)
         button2.addTarget(self, action: #selector(button2Action(_ :)), for: .touchUpInside)
+        button1.setTitle("", for: .normal)
+        button2.setTitle("", for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

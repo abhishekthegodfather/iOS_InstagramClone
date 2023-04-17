@@ -29,6 +29,8 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         followBtn.layer.borderWidth = CGFloat(0.5)
         followBtn.layer.borderColor = UIColor(red: 0.61, green: 0.61, blue: 0.61, alpha: 1.0).cgColor
         followBtn.layer.cornerRadius = CGFloat(3.0)
+        profileImageView.backgroundColor = .gray
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
     }
     
     
@@ -49,7 +51,8 @@ class ProfileHeaderTableViewCell: UITableViewCell {
     }
     
     func logout(){
-        print("logout")
+        // Creating logout functionality
+        HelperMethods.verifiedLoginScreen()
     }
     
     func followUser(){

@@ -7,15 +7,22 @@
 import UIKit
 import Firebase
 
+var tabBarDelegate = TabBarDelgate()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var tabBarDelegate = TabBarDelgate()
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        prepareTabController()
+        FirebaseApp.configure()
+        if let _ = Auth.auth().currentUser {
+            prepareTabController()
+        }else{
+            loginScreenProcess()
+        }
+        
         return true
     }
     
@@ -52,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         tabController.viewControllers = vcs
         tabController.delegate = tabBarDelegate
+        tabController.tabBar.tintColor = UIColor.black
 //        tabController.tabBar.isTranslucent = false
         if let items = tabController.tabBar.items {
             for item in items {
@@ -70,6 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().backgroundColor = UIColor.white
         window?.rootViewController = tabController
+    }
+    
+    func loginScreenProcess(){
+        let loginStoryBoard = UIStoryboard(name: Constants.loginScrrenStoryBoard, bundle: nil)
+        let loginScreenVC = loginStoryBoard.instantiateViewController(withIdentifier: Constants.loginScreenVCID) as? LoginViewController
+        window?.rootViewController = loginScreenVC
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

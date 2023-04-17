@@ -19,6 +19,7 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!{
         didSet{
             scrollView.delegate = self
+            scrollView.bounces = false
         }
     }
     

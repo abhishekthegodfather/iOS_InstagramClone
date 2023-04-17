@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var textField1: UITextField!
@@ -37,7 +39,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        animatedView.startAnimating()
+        animatedView.startAnimation()
         registerkeyBoardAppear()
     }
     
@@ -100,6 +102,50 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         signUpBtn.layer.borderWidth = CGFloat(0.5)
         signUpBtn.layer.borderColor = UIColor.white.cgColor
         signinBtn.addTarget(self, action: #selector(signinBtnAction(_ :)), for: .touchUpInside)
+        signUpBtn.addTarget(self, action: #selector(prepareSignoutProcess(_ :)), for: .touchUpInside)
+        textField3.isSecureTextEntry = true
+    }
+    
+    @objc func prepareSignoutProcess(_ sender: UIButton) {
+        guard let userNameTxt = textField1.text else { return }
+        guard let emailTxt = textField2.text else { return }
+        guard let passwordTxt = textField3.text else { return }
+        
+        let spinner = UIViewController.showLoadingIndicator(self.view)
+        
+        Auth.auth().createUser(withEmail: emailTxt, password: passwordTxt) { [weak self] (authUser, error) in
+            guard let strongSelf = self else  { return }
+            
+            if error == nil {
+                guard let firebaseUserId = authUser?.user.uid else {
+                    let alert  = HelperMethods.showErrorMessage(title: "Error", message: "Cannot get userId in firebase after account creation")
+                    strongSelf.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                Auth.auth().signIn(withEmail: emailTxt, password: passwordTxt) { (authUser, error) in
+                    DispatchQueue.main.async {
+                        UIViewController.removeLoadingIndicator(spinner)
+                    }
+                    
+                    if error == nil {
+                        let dataBaseRef = Database.database().reference().child("users").child(firebaseUserId)
+                        dataBaseRef.updateChildValues(["username" : userNameTxt, "bio" : "welcome to instagram clone profile"])
+                        DispatchQueue.main.async {
+                            HelperMethods.VerifiedAfterLoginProcess()
+                        }
+                    }else {
+                        let alert = HelperMethods.showErrorMessage(title: "Error", message: "Error in login after account creation")
+                        strongSelf.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }else {
+                UIViewController.removeLoadingIndicator(spinner)
+                let alert = HelperMethods.showErrorMessage(title: "Error", message: "Error in signup process")
+                strongSelf.present(alert, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

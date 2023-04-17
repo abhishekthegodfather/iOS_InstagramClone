@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -36,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        animetedViewThing.startAnimating()
+        animetedViewThing.startAnimation()
         registerForKeyboardNotification()
     }
     
@@ -88,6 +89,37 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField1.delegate = self
         textField2.delegate = self
         self.signupBtn.addTarget(self, action: #selector(signupAction(_ :)), for: .touchUpInside)
+        self.loginBtn.addTarget(self, action: #selector(prepareForSignin(_ :)), for: .touchUpInside)
+        textField2.isSecureTextEntry = true
+    }
+    
+    @objc func prepareForSignin(_ sender: UIButton){
+        guard let emailTxt = textField1.text else { return }
+        guard let passTxt = textField2.text else { return }
+        
+        // show the spinner from extension class
+        let spinner = UIViewController.showLoadingIndicator(self.view)
+        Auth.auth().signIn(withEmail: emailTxt, password: passTxt) { [weak self] (AuthResult, error) in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                UIViewController.removeLoadingIndicator(spinner)
+            }
+            
+            if error == nil {
+                DispatchQueue.main.async {
+                    HelperMethods.VerifiedAfterLoginProcess()
+                }
+            }else if let error = error {
+                DispatchQueue.main.async {
+                    let alert = HelperMethods.showErrorMessage(title: "Error", message: "Error in Login Process")
+                    strongSelf.present(alert, animated: true, completion: nil)
+                }
+                
+            }
+        }
     }
     
     @objc func tapGestureAction(_ sender: UITapGestureRecognizer){
@@ -100,7 +132,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     
     @objc func signupAction(_ sender: UIButton){
-        performSegue(withIdentifier: "signUpSegueNameID", sender: nil)
+        let signupVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: Constants.siginUpVCID) as? SignUpViewController
+        signupVC?.modalPresentationStyle = .fullScreen
+        self.present(signupVC ?? UIViewController(), animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

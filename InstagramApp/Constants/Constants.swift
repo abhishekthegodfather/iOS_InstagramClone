@@ -59,4 +59,9 @@ class Constants {
     static let ProfileViewStyleTableViewCellID = "ProfileViewStyleTableViewCell"
     
     static let signUpSegueNameID = "signUpSegue"
+    
+    static let loginScrrenStoryBoard = "Login"
+    static let loginScreenVCID = "loginScrren"
+    
+    static let siginUpVCID = "signupScreen"
 }
