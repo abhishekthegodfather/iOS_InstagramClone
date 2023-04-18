@@ -122,7 +122,23 @@ class PostModel {
         let personalPosts = UserModel.personalPosts.child(userID).updateChildValues(["\(tempKeys)": postDict])
     }
     
+    var dateStr : Date?
+    var userid : String = ""
+    var imageUrl : URL?
+    var captionTxt : String?
+    
     init?(_ snapshot : DataSnapshot){
+        guard let value = snapshot.value as? [String : Any] else { return nil }
         
+        guard let dateString = value["date"] as? Double else {
+            return nil
+        }
+        guard let imgUrl = value["image"] as? String else { return nil}
+        guard let urlImage = URL(string: imgUrl) else { return nil }
+    
+        self.dateStr = Date.init(timeIntervalSince1970: dateString)
+        self.imageUrl = urlImage
+        self.captionTxt = value["caption"] as? String ?? ""
+        self.userid = value["user"] as? String ?? ""
     }
 }

@@ -15,10 +15,18 @@ import SDWebImage
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var posts : [Post] = []
+//    var posts : [Post] = []
+    
+    var postArray : NSMutableArray = []
+    var userRef : DatabaseReference? {
+        guard let userId = Auth.auth().currentUser?.uid else {return nil}
+        return UserModel.personalPosts.child(userId)
+    }
+    
     var profileType : ProfileViewConstant.ProfileConstant = .personalUser
     var user : UserModel?
     var profileImagePicker : UIImagePickerController = UIImagePickerController()
+    var pageinationCountFromFirebase : UInt = 5
     
     lazy var imageUplaodProgressBar : UIProgressView = {
         var _progressView = UIProgressView()
@@ -84,6 +92,32 @@ class ProfileViewController: UIViewController {
             guard let userModelFirebase = UserModel(DBSnapShot) else { return }
             UIViewController.removeLoadingIndicator(spiner)
             strongSelf.user = userModelFirebase
+            strongSelf.getUserPostFromFirebase()
+//            DispatchQueue.main.async {
+//                strongSelf.tableView.reloadData()
+//            }
+        }
+    }
+    
+    func getUserPostFromFirebase(){
+        guard let userRefPointer = userRef else {
+            let alert = UIAlertController(title: "Error", message: "Error in Retriving Post", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let userRefQuery = userRefPointer.queryOrderedByKey().queryLimited(toLast: pageinationCountFromFirebase)
+        userRefQuery.observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            for Item in snapshot.children {
+                guard let snapItem = Item as? DataSnapshot else { continue }
+                guard let userPosts = PostModel(snapItem) else { continue }
+                strongSelf.postArray.insert(userPosts, at: 0)
+            }
             
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
@@ -182,7 +216,7 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
         }else if section == 1{
             return 1
         }else{
-            return posts.count
+            return postArray.count
         }
     }
     
@@ -217,6 +251,16 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
             return cell ?? UITableViewCell()
         }else if indexPath.section == 2{
             let cell = tableView.dequeueReusableCell(withIdentifier: FeedTableViewCell.cellId, for: indexPath) as? FeedTableViewCell
+            let tempPostArray = postArray[indexPath.row] as? PostModel
+            cell?.bigImage.sd_cancelCurrentImageLoad()
+            cell?.bigImage.sd_setImage(with: tempPostArray?.imageUrl)
+//            cell?.bigImage.contentMode = .scaleAspectFill
+            cell?.label2.text = tempPostArray?.captionTxt
+            
+            let dateFormater = DateFormatter()
+            dateFormater.dateFormat = "dd MM yyy hh:mm"
+            cell?.someLabel.text = dateFormater.string(from: tempPostArray?.dateStr ?? Date())
+            cell?.userRefer = UserModel.firebaseDBReference.child(tempPostArray?.userid ?? "")
             return cell ?? UITableViewCell()
         }else{
             return UITableViewCell()

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
 
 class FeedTableViewCell: UITableViewCell {
 
@@ -24,9 +27,27 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentCount: UIButton!
     @IBOutlet weak var commentCountLabel: UILabel!
     
-//    @IBOutlet weak var buttonView: UIView!
     
-    var buttonCount : UIButton?
+    var currentFIRUser : UserModel?
+    var userRefer : DatabaseReference? {
+        willSet{
+            self.resetValuesForCell()
+        }
+        
+        didSet{
+            userRefer?.observeSingleEvent(of: .value, with: {[weak self] (snapshot) in
+                guard let strongSelf = self else { return }
+                if let CFIRuser = UserModel(snapshot) {
+                    strongSelf.currentFIRUser = CFIRuser
+                    if #available(iOS 13.0, *) {
+                        strongSelf.prepareForFIRuserSetup(user: CFIRuser)
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
+            })
+        }
+    }
     
     
     
@@ -41,6 +62,26 @@ class FeedTableViewCell: UITableViewCell {
 //        self.buttonCount?.setTitle("Counts", for: .normal)
         
     
+    }
+    
+    
+    func resetValuesForCell(){
+        titleBtn.setTitle("Register User", for: .normal)
+        if #available(iOS 13.0, *) {
+            profileImage.image = UIImage.init(systemName: "person.circle")
+        } else {
+            // Fallback on earlier versions
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func prepareForFIRuserSetup(user: UserModel){
+        titleBtn.setTitle(user.profileName, for: .normal)
+        if let profileImg = user.profileImageRef {
+            profileImage.sd_cancelCurrentImageLoad()
+            profileImage.sd_setImage(with: profileImg, placeholderImage: UIImage(systemName: "person.circle"), context: nil)
+            profileImage.contentMode = .scaleAspectFill
+        }
     }
     
     
