@@ -40,6 +40,9 @@ class ProfileHeaderTableViewCell: UITableViewCell {
         
         tapGestureForImage = UITapGestureRecognizer()
         tapGestureForImage?.addTarget(self, action: #selector(changeORshowImage(_ :)))
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGestureForImage ?? UITapGestureRecognizer())
+        profileImageView.clipsToBounds = true
     }
     
     @objc func changeORshowImage(_ sender: UITapGestureRecognizer){

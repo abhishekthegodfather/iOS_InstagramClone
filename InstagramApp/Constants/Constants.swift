@@ -64,4 +64,6 @@ class Constants {
     static let loginScreenVCID = "loginScrren"
     
     static let siginUpVCID = "signupScreen"
+    
+    static let createNewPostsVCID = "createPostVC"
 }

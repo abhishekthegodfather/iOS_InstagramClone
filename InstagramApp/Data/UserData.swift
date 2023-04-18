@@ -35,14 +35,14 @@ class UserModel {
     
     var profileName : String = ""
     var bioProfile : String = ""
-    var profileImageRef : StorageReference?
+    var profileImageRef : URL?
     
     init?(_ snapshot : DataSnapshot){
         guard let value = snapshot.value as? [String : Any] else { return }
         self.profileName = value["username"] as? String ?? ""
         self.bioProfile = value["bio"] as? String ?? ""
-        if let profileImg = value["profile_image"] as? String, let userId = Auth.auth().currentUser?.uid {
-            self.profileImage = Storage.storage().reference(withPath: "images/\(userId)/\(profileImg)")
+        if let profileImg = value["profile_image"] as? String {
+            self.profileImageRef = URL(string: profileImg)
         }
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import SDWebImage
 
 class ProfileViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class ProfileViewController: UIViewController {
     var posts : [Post] = []
     var profileType : ProfileViewConstant.ProfileConstant = .personalUser
     var user : UserModel?
-    var profileImagePicker : UIImagePickerController?
+    var profileImagePicker : UIImagePickerController = UIImagePickerController()
     
     lazy var imageUplaodProgressBar : UIProgressView = {
         var _progressView = UIProgressView()
@@ -44,7 +45,8 @@ class ProfileViewController: UIViewController {
         prepTableView()
         prepareAutoLayoutForProgressViewAndbutton()
         prepareForLoadData()
-        
+        profileImagePicker.delegate = self
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func prepareAutoLayoutForProgressViewAndbutton() {
@@ -89,52 +91,67 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func uploadImageToFirebase(data: Data){
-        if let user = Auth.auth().currentUser {
-            self.imageUplaodProgressBar.isHidden = false
-            self.cancelProgressView.isHidden = false
-            self.imageUplaodProgressBar.progress = Float(0)
+    func uploadImageToFirebase(data: Data) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        imageUplaodProgressBar.isHidden = false
+        cancelProgressView.isHidden = false
+        imageUplaodProgressBar.progress = 0
+        
+        let uploadedImageId = UUID().uuidString.lowercased().replacingOccurrences(of: "-", with: "_")
+        let uploadImageName = "\(uploadedImageId).jpg"
+        let pathOfUploadedFileinFirebaseDB = "images/\(user.uid)/\(uploadImageName)"
+        
+        let storageRefFirebaseDB = Storage.storage().reference(withPath: pathOfUploadedFileinFirebaseDB)
+        let uploadedImageMetaData = StorageMetadata()
+        uploadedImageMetaData.contentType = "image/jpg"
+        
+        uploadDataTask = storageRefFirebaseDB.putData(data, metadata: uploadedImageMetaData) { [weak self] (metaData, error) in
+            guard let strongSelf = self else { return }
             
-            var uploadedImageId = UUID().uuidString.lowercased()
-            uploadedImageId = uploadedImageId.replacingOccurrences(of: "-", with: "_")
+            DispatchQueue.main.async {
+                strongSelf.imageUplaodProgressBar.isHidden = true
+                strongSelf.cancelProgressView.isHidden = true
+            }
             
-            let uploadImageName = "\(uploadedImageId).jpg"
-            let pathOfUploadedFileinFirebaseDB = "images/\(user.uid)/\(uploadImageName)"
-            
-            var uploadedImageMetaData = StorageMetadata()
-            uploadedImageMetaData.contentType = "image/jpg"
-            
-            let storageRefFirebaseDB = Storage.storage().reference(withPath: pathOfUploadedFileinFirebaseDB)
-            uploadDataTask = storageRefFirebaseDB.putData(data, metadata: uploadedImageMetaData, completion: { [weak self] (metaData, error) in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    strongSelf.imageUplaodProgressBar.isHidden = true
-                    strongSelf.cancelProgressView.isHidden = true
+            if let error = error {
+                print(error.localizedDescription)
+                let alert = UIAlertController(title: "Error", message: "Error in uploading image", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                    alert.dismiss(animated: true, completion: nil)
                 }
-                
-                if let error = error {
-                    let alert = UIAlertController(title: "Error", message: "Error in uploading image", preferredStyle: .alert)
-                    let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
-                        alert.dismiss(animated: true, completion: nil)
+                alert.addAction(ok)
+                strongSelf.present(alert, animated: true)
+            } else {
+                // create a DB Entry
+                storageRefFirebaseDB.downloadURL { (downloadingUrl, error) in
+                    guard let downloadURL = downloadingUrl else {
+                        print(error?.localizedDescription)
+                        let alert = UIAlertController(title: "Error", message: "Error in uploading image", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "ok", style: .default) { (action) in
+                            alert.dismiss(animated: true, completion: nil)
+                        }
+                        alert.addAction(ok)
+                        strongSelf.present(alert, animated: true, completion: nil)
+                        return
                     }
-                    alert.addAction(ok)
-                    strongSelf.present(alert, animated: true)
-                }else{
-                    // create a DB Entry
-                    UserModel.firebaseDBReference.child(user.uid).updateChildValues(["profile_image": uploadImageName])
+                    
+                    UserModel.firebaseDBReference.child(user.uid).updateChildValues(["profile_image": downloadURL.absoluteString])
                 }
-            })
-            
-            uploadDataTask?.observe(.progress, handler: {[weak self] (snapshot) in
-                guard let strongSelf = self else { return }
-                let percentageDatataskCompleted = 100 * Double(snapshot.progress?.completedUnitCount ?? Int64(0.0)) / Double(snapshot.progress?.totalUnitCount ?? Int64(0.0))
-                DispatchQueue.main.async {
-                    strongSelf.imageUplaodProgressBar.setProgress(Float(percentageDatataskCompleted), animated: true)
-                }
-            })
-            
+            }
         }
+        
+        uploadDataTask?.observe(.progress, handler: { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            
+            let percentageDatataskCompleted = 100 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
+            
+            DispatchQueue.main.async {
+                strongSelf.imageUplaodProgressBar.setProgress(Float(percentageDatataskCompleted), animated: true)
+            }
+        })
     }
+
     
     @objc func cancelProgressAction(_ sender : UIButton) {
         self.imageUplaodProgressBar.isHidden = false
@@ -177,6 +194,14 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
             cell?.namelabel.text = ""
             if let user = self.user {
                 cell?.namelabel.text = user.profileName
+                if let proImg = user.profileImageRef {
+                    cell?.profileImageView.sd_cancelCurrentImageLoad()
+                    if #available(iOS 13.0, *) {
+                        cell?.profileImageView.sd_setImage(with: proImg, placeholderImage: UIImage(systemName: "person.circle"), completed: nil)
+                    } else {
+                        // Fallback on earlier versions
+                    }
+                }
             }
             switch profileType {
             case .personalUser:
@@ -205,32 +230,3 @@ extension ProfileViewController : UITableViewDelegate, UITableViewDataSource {
 
 
 
-extension ProfileViewController : profileImageDidTouch {
-    func showProfileImageAfterTouch() {
-        profileImagePicker = UIImagePickerController()
-        let chooseOptionsAlert = UIAlertController(title: "Change Profile image", message: "Choose a option to chnage the profile photo", preferredStyle: .actionSheet)
-        let photoLibraryOption = UIAlertAction(title: "Import From Library", style: .default) { [weak self] (action) in
-            guard let strongSelf = self else  { return }
-            strongSelf.profileImagePicker?.sourceType = .photoLibrary
-            strongSelf.profileImagePicker?.allowsEditing = true
-            strongSelf.present(strongSelf.profileImagePicker ?? UIImagePickerController(), animated: true, completion: nil)
-        }
-        
-        let cameraOption = UIAlertAction(title: "Take Photo", style: .default) { [weak self] (action) in
-            guard let strongSelf = self else  { return }
-            strongSelf.profileImagePicker?.allowsEditing = true
-            strongSelf.profileImagePicker?.sourceType = .camera
-            strongSelf.present(strongSelf.profileImagePicker ?? UIImagePickerController(), animated: true, completion: nil)
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .default) { (action) in
-            chooseOptionsAlert.dismiss(animated: true, completion: nil)
-        }
-        
-        chooseOptionsAlert.addAction(photoLibraryOption)
-        chooseOptionsAlert.addAction(cameraOption)
-        chooseOptionsAlert.addAction(cancel)
-        self.present(chooseOptionsAlert, animated: true, completion: nil)
-        
-    }
-}

@@ -41,7 +41,8 @@
 		FC49E0B029E953DA0038825A /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0AF29E953DA0038825A /* ActivityView.swift */; };
 		FC49E0B329E954430038825A /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC49E0B129E954430038825A /* ActivityTableViewCell.swift */; };
 		FC49E0B429E954430038825A /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC49E0B229E954430038825A /* ActivityTableViewCell.xib */; };
-		FCDE276329ED496F00CB0C31 /* extensionProfileCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */; };
+		FCDE276329ED496F00CB0C31 /* extensionProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE276229ED496F00CB0C31 /* extensionProfile.swift */; };
+		FCDE276529EE504400CB0C31 /* CreatePostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDE276429EE504400CB0C31 /* CreatePostsViewController.swift */; };
 		FCF08A3A29E680C400AD7BC2 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3929E680C400AD7BC2 /* Home.storyboard */; };
 		FCF08A3C29E680D500AD7BC2 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3B29E680D500AD7BC2 /* Search.storyboard */; };
 		FCF08A3E29E6810A00AD7BC2 /* newPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */; };
@@ -106,7 +107,8 @@
 		FC49E0AF29E953DA0038825A /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		FC49E0B129E954430038825A /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		FC49E0B229E954430038825A /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
-		FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionProfileCells.swift; sourceTree = "<group>"; };
+		FCDE276229ED496F00CB0C31 /* extensionProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionProfile.swift; sourceTree = "<group>"; };
+		FCDE276429EE504400CB0C31 /* CreatePostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostsViewController.swift; sourceTree = "<group>"; };
 		FCF08A3929E680C400AD7BC2 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		FCF08A3B29E680D500AD7BC2 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		FCF08A3D29E6810A00AD7BC2 /* newPost.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = newPost.storyboard; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				FC49E09629E800350038825A /* NewPostPageViewController.swift */,
 				FC49E09829E800760038825A /* LibraryViewController.swift */,
 				FC49E09A29E800830038825A /* CameraViewController.swift */,
+				FCDE276429EE504400CB0C31 /* CreatePostsViewController.swift */,
 			);
 			path = NewPostViews;
 			sourceTree = "<group>";
@@ -326,7 +329,7 @@
 		FCDE276129ED493800CB0C31 /* ExtensionProfileCells */ = {
 			isa = PBXGroup;
 			children = (
-				FCDE276229ED496F00CB0C31 /* extensionProfileCells.swift */,
+				FCDE276229ED496F00CB0C31 /* extensionProfile.swift */,
 			);
 			path = ExtensionProfileCells;
 			sourceTree = "<group>";
@@ -555,7 +558,7 @@
 				FC49E0A329E804B90038825A /* tabBarDelegate.swift in Sources */,
 				FCF2D08929E979EC00EB8895 /* ProfileViewStyleTableViewCell.swift in Sources */,
 				FCF2D09529E9A0AB00EB8895 /* AnimatedLoginView.swift in Sources */,
-				FCDE276329ED496F00CB0C31 /* extensionProfileCells.swift in Sources */,
+				FCDE276329ED496F00CB0C31 /* extensionProfile.swift in Sources */,
 				FCF08A4529E6853F00AD7BC2 /* HomeViewController.swift in Sources */,
 				FC49E0A629E814E20038825A /* NewPageConstants.swift in Sources */,
 				E1E440B22163ED050034FD40 /* ActivityData.swift in Sources */,
@@ -581,6 +584,7 @@
 				E1D28C3321629B4800DB621F /* SimpleCameraProtocol.swift in Sources */,
 				FC44F5B229E6A564004CF648 /* StroyCollectionViewCell.swift in Sources */,
 				FCF08A4929E6857300AD7BC2 /* NewPostViewController.swift in Sources */,
+				FCDE276529EE504400CB0C31 /* CreatePostsViewController.swift in Sources */,
 				FC44F5AE29E6A1E0004CF648 /* StoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

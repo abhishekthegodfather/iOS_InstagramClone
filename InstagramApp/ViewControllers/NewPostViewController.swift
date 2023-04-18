@@ -23,6 +23,21 @@ class NewPostViewController: UIViewController {
     func prepareNavbars(){
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "cancel", style: .plain, target: self, action: #selector(cancelAction(_ :)))
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(createNewPost(_ :)), name: NSNotification.Name(rawValue: "createNewPosts"), object: nil)
+    }
+    
+    @objc func createNewPost(_ notification: Notification){
+        if let recivedObj = notification.object as? UIImage {
+            let newPostVC = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.createNewPostsVCID) as? CreatePostsViewController
+//            newPostVC?.modalPresentationStyle = .fullScreen
+            newPostVC?.postImage = recivedObj
+            self.present(newPostVC ?? UIViewController(), animated: true, completion: nil)
+        }
+    }
+    
+    @objc func backActionBar(_ sender: UIBarButtonItem){
+        dismiss(animated: true, completion: nil)
     }
     
     func prepareBtnAction(){

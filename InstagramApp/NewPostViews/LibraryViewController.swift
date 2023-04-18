@@ -81,5 +81,13 @@ extension LibraryViewController : UICollectionViewDelegate, UICollectionViewData
         return CGSize(width: width, height: width)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let assets = self.PhotoLibAssetsArray[indexPath.row]
+        let manager = PHImageManager.default()
+        manager.requestImage(for: assets, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { (results, _) in
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "createNewPosts"), object: results)
+        }
+    }
+    
     
 }

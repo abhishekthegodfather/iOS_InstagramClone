@@ -116,7 +116,93 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZA-Ae-k6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1512" y="37"/>
+            <point key="canvasLocation" x="2437.4045801526718" y="36.619718309859159"/>
+        </scene>
+        <!--Create Posts View Controller-->
+        <scene sceneID="V3X-SY-RWD">
+            <objects>
+                <viewController storyboardIdentifier="createPostVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XxP-xc-K43" customClass="CreatePostsViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lat-SN-ycr">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTW-kd-cGl">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OkK-x3-MGf">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t5Q-KH-UaE">
+                                                <rect key="frame" x="0.0" y="0.0" width="393" height="393"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="t5Q-KH-UaE" secondAttribute="height" multiplier="1:1" id="XFu-1r-zLf"/>
+                                                </constraints>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nwD-XG-bGV">
+                                                <rect key="frame" x="10" y="403" width="373" height="100"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="lSe-Va-A8E"/>
+                                                </constraints>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmz-SW-Qh3">
+                                                <rect key="frame" x="20" y="684" width="353" height="45"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="ich-NC-fNs"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Post"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="nwD-XG-bGV" firstAttribute="leading" secondItem="OkK-x3-MGf" secondAttribute="leading" constant="10" id="Fke-xw-Nkt"/>
+                                            <constraint firstAttribute="trailing" secondItem="t5Q-KH-UaE" secondAttribute="trailing" id="GhW-fa-dmN"/>
+                                            <constraint firstAttribute="trailing" secondItem="nwD-XG-bGV" secondAttribute="trailing" constant="10" id="NWq-tb-L7x"/>
+                                            <constraint firstAttribute="trailing" secondItem="fmz-SW-Qh3" secondAttribute="trailing" constant="20" id="QMP-Fe-a1i"/>
+                                            <constraint firstItem="t5Q-KH-UaE" firstAttribute="leading" secondItem="OkK-x3-MGf" secondAttribute="leading" id="Rhc-DZ-giT"/>
+                                            <constraint firstItem="nwD-XG-bGV" firstAttribute="top" secondItem="t5Q-KH-UaE" secondAttribute="bottom" constant="10" id="fVf-un-jnZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="fmz-SW-Qh3" secondAttribute="bottom" constant="30" id="oih-RW-dQF"/>
+                                            <constraint firstItem="t5Q-KH-UaE" firstAttribute="top" secondItem="OkK-x3-MGf" secondAttribute="top" id="u6x-xl-OrY"/>
+                                            <constraint firstItem="fmz-SW-Qh3" firstAttribute="leading" secondItem="OkK-x3-MGf" secondAttribute="leading" constant="20" id="uJA-Ed-K3q"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="OkK-x3-MGf" firstAttribute="width" secondItem="GTW-kd-cGl" secondAttribute="width" id="E2r-Yc-eM3"/>
+                                    <constraint firstAttribute="trailing" secondItem="OkK-x3-MGf" secondAttribute="trailing" id="KUf-5R-y2d"/>
+                                    <constraint firstItem="OkK-x3-MGf" firstAttribute="height" secondItem="GTW-kd-cGl" secondAttribute="height" id="ZnD-Ch-hox"/>
+                                    <constraint firstItem="OkK-x3-MGf" firstAttribute="top" secondItem="GTW-kd-cGl" secondAttribute="top" id="deF-Oz-tdA"/>
+                                    <constraint firstItem="OkK-x3-MGf" firstAttribute="leading" secondItem="GTW-kd-cGl" secondAttribute="leading" id="jo4-NY-XVE"/>
+                                    <constraint firstAttribute="bottom" secondItem="OkK-x3-MGf" secondAttribute="bottom" id="tSd-jm-uA1"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4qc-ue-yfQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GTW-kd-cGl" firstAttribute="leading" secondItem="4qc-ue-yfQ" secondAttribute="leading" id="CM2-fZ-h3G"/>
+                            <constraint firstItem="4qc-ue-yfQ" firstAttribute="trailing" secondItem="GTW-kd-cGl" secondAttribute="trailing" id="VtE-yk-V7N"/>
+                            <constraint firstItem="4qc-ue-yfQ" firstAttribute="bottom" secondItem="GTW-kd-cGl" secondAttribute="bottom" id="XbA-xd-64t"/>
+                            <constraint firstItem="GTW-kd-cGl" firstAttribute="top" secondItem="4qc-ue-yfQ" secondAttribute="top" id="keN-7q-CDp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LXo-2B-oGe"/>
+                    <connections>
+                        <outlet property="captionTextView" destination="nwD-XG-bGV" id="Ldd-hx-YwL"/>
+                        <outlet property="imagviewPost" destination="t5Q-KH-UaE" id="fqL-o2-ud5"/>
+                        <outlet property="postBtn" destination="fmz-SW-Qh3" id="eyv-xY-6TD"/>
+                        <outlet property="scrollView" destination="GTW-kd-cGl" id="M0c-MV-S9K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W7C-Cw-egv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="967.17557251908397" y="680.98591549295782"/>
         </scene>
         <!--Camera View Controller-->
         <scene sceneID="qx6-yk-EXU">
@@ -160,11 +246,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="488-fF-Xzt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="819" y="456"/>
+            <point key="canvasLocation" x="1744.2748091603053" y="455.63380281690144"/>
         </scene>
     </scenes>
     <resources>
         <image name="camera_capture_icon" width="70" height="70"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
