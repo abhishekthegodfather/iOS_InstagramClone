@@ -33,6 +33,12 @@ class UserModel {
         }
     }
     
+    static var personalPosts : DatabaseReference {
+        get {
+            return Database.database().reference().child("user_posts")
+        }
+    }
+    
     var profileName : String = ""
     var bioProfile : String = ""
     var profileImageRef : URL?

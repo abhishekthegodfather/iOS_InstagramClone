@@ -11,7 +11,6 @@ import Photos
 
 class LibraryViewController: UIViewController {
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var PhotoLibAssetsArray : [PHAsset] = []
@@ -85,9 +84,20 @@ extension LibraryViewController : UICollectionViewDelegate, UICollectionViewData
         let assets = self.PhotoLibAssetsArray[indexPath.row]
         let manager = PHImageManager.default()
         manager.requestImage(for: assets, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: nil) { (results, _) in
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "createNewPosts"), object: results)
+            let newPostVC = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.createNewPostsVCID) as? CreatePostsViewController
+            newPostVC?.postImage = results
+            if let navigationController = self.navigationController {
+                for viewController in navigationController.viewControllers {
+                    if let createPostsViewController = viewController as? CreatePostsViewController {
+                        navigationController.popToViewController(createPostsViewController, animated: true)
+                        return
+                    }
+                }
+            }
+            
+            // If the CreatePostsViewController is not in the navigation stack, push it
+            self.navigationController?.pushViewController(newPostVC ?? UIViewController(), animated: true)
+            
         }
     }
-    
-    
 }

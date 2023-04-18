@@ -5,8 +5,11 @@
 //
 
 import Foundation
-
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+
 
 struct Post {
     
@@ -100,5 +103,26 @@ class Model {
         
     }
     
+}
+
+
+class PostModel {
+    static var collection : DatabaseReference {
+        get {
+            return Database.database().reference().child("posts")
+        }
+    }
     
+    static func createPosts(userID: String, UIImageUrl: String, captions: String){
+        let postedData = Date().timeIntervalSince1970
+        guard let tempKeys = PostModel.collection.childByAutoId().key else { return }
+        let postDict : [String : Any] = ["user" : userID, "image" : UIImageUrl, "caption": captions, "date" : postedData]
+        PostModel.collection.updateChildValues(["\(tempKeys)" : postDict])
+        
+        let personalPosts = UserModel.personalPosts.child(userID).updateChildValues(["\(tempKeys)": postDict])
+    }
+    
+    init?(_ snapshot : DataSnapshot){
+        
+    }
 }

@@ -50,6 +50,8 @@ class CreatePostsViewController: UIViewController {
         return _cancelButton
     }()
     
+    var uploadDataTask : StorageUploadTask?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         captionTextView.delegate = self
@@ -58,6 +60,93 @@ class CreatePostsViewController: UIViewController {
         captionTextView.layer.cornerRadius = 3.0
         captionTextView.layer.borderColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0).cgColor
         captionTextView.layer.borderWidth = 0.5
+        prepareAutoLayoutForProgressViewAndbutton()
+    }
+    
+    func prepareAutoLayoutForProgressViewAndbutton() {
+        self.view.addSubview(imageUplaodProgressBar)
+        self.view.addSubview(cancelProgressView)
+        
+        imageUplaodProgressBar.isHidden = true
+        cancelProgressView.isHidden = true
+        imageUplaodProgressBar.translatesAutoresizingMaskIntoConstraints = false
+        cancelProgressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let constraints: [NSLayoutConstraint] = [
+            imageUplaodProgressBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            imageUplaodProgressBar.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            imageUplaodProgressBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            imageUplaodProgressBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            imageUplaodProgressBar.heightAnchor.constraint(equalToConstant: 10),
+            
+            cancelProgressView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            cancelProgressView.topAnchor.constraint(equalTo: imageUplaodProgressBar.bottomAnchor, constant: 5),
+            cancelProgressView.widthAnchor.constraint(equalToConstant: 60),
+            cancelProgressView.heightAnchor.constraint(equalToConstant: 30)
+        ]
+        
+        NSLayoutConstraint.activate(constraints)
+    }
+    
+    func uploadImageToFirebase(data: Data, caption: String) {
+        guard let user = Auth.auth().currentUser else { return }
+        
+        imageUplaodProgressBar.isHidden = false
+        cancelProgressView.isHidden = false
+        imageUplaodProgressBar.progress = 0
+        
+        let uploadedImageId = UUID().uuidString.lowercased().replacingOccurrences(of: "-", with: "_")
+        let uploadImageName = "\(uploadedImageId).jpg"
+        let pathOfUploadedFileinFirebaseDB = "images/\(user.uid)/\(uploadImageName)"
+        
+        let storageRefFirebaseDB = Storage.storage().reference(withPath: pathOfUploadedFileinFirebaseDB)
+        let uploadedImageMetaData = StorageMetadata()
+        uploadedImageMetaData.contentType = "image/jpg"
+        
+        uploadDataTask = storageRefFirebaseDB.putData(data, metadata: uploadedImageMetaData) { [weak self] (metaData, error) in
+            guard let strongSelf = self else { return }
+            
+            DispatchQueue.main.async {
+                strongSelf.imageUplaodProgressBar.isHidden = true
+                strongSelf.cancelProgressView.isHidden = true
+            }
+            
+            if let error = error {
+                print(error.localizedDescription)
+                let alert = UIAlertController(title: "Error", message: "Error in uploading image", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                    alert.dismiss(animated: true, completion: nil)
+                }
+                alert.addAction(ok)
+                strongSelf.present(alert, animated: true)
+            } else {
+                // create a DB Entry
+                storageRefFirebaseDB.downloadURL { (downloadingUrl, error) in
+                    guard let downloadURL = downloadingUrl else {
+                        print(error?.localizedDescription)
+                        let alert = UIAlertController(title: "Error", message: "Error in uploading image", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "ok", style: .default) { (action) in
+                            alert.dismiss(animated: true, completion: nil)
+                        }
+                        alert.addAction(ok)
+                        strongSelf.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    
+                    PostModel.createPosts(userID: user.uid, UIImageUrl: downloadURL.absoluteString, captions: caption)
+                }
+            }
+        }
+        
+        uploadDataTask?.observe(.progress, handler: { [weak self] (snapshot) in
+            guard let strongSelf = self else { return }
+            
+            let percentageDatataskCompleted = 100 * Double(snapshot.progress!.completedUnitCount) / Double(snapshot.progress!.totalUnitCount)
+            
+            DispatchQueue.main.async {
+                strongSelf.imageUplaodProgressBar.setProgress(Float(percentageDatataskCompleted), animated: true)
+            }
+        })
     }
     
     
@@ -70,6 +159,13 @@ class CreatePostsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         deregisterForKeyboardNotifcation()
+    }
+    
+    
+    @objc func cancelProgressAction(_ sender : UIButton) {
+        self.imageUplaodProgressBar.isHidden = false
+        self.cancelProgressView.isHidden = false
+        uploadDataTask?.cancel()
     }
     
     
@@ -112,7 +208,23 @@ class CreatePostsViewController: UIViewController {
     
     
     @objc func postAction(_ sender: UIButton){
+        guard let captionTxt = captionTextView.text, !captionTxt.isEmpty else {
+            let alert = UIAlertController(title: "Error", message: "caption field cannot be empty", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "Ok", style: .default) { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         
+        
+        if let resizedImage = postImage?.resize(1080) {
+            if let resizedImgData = resizedImage.jpegData(compressionQuality: 0.75) {
+                uploadImageToFirebase(data: resizedImgData, caption: captionTxt)
+            }
+        }
     }
 }
 

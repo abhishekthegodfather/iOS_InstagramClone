@@ -64,6 +64,7 @@
                             <constraint firstItem="eU3-EK-1Xh" firstAttribute="top" secondItem="ni1-X6-DTo" secondAttribute="bottom" id="z4o-dw-rDE"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="EaY-oY-Nzt"/>
                     <connections>
                         <outlet property="libraryButttonAction" destination="ThN-N7-In2" id="NIz-Y2-xST"/>
                         <outlet property="photoButtonAction" destination="3rT-n7-UHC" id="QKK-nO-PLo"/>
@@ -71,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="58" y="-2"/>
+            <point key="canvasLocation" x="983.96946564885491" y="-2.1126760563380285"/>
         </scene>
         <!--New Post Page View Controller-->
         <scene sceneID="NMA-Q8-rJH">
@@ -79,7 +80,7 @@
                 <pageViewController storyboardIdentifier="newPosts" autoresizesArchivedViewToFullSize="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="sfD-4C-RT2" customClass="NewPostPageViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fp-Zs-QOL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="821" y="-194"/>
+            <point key="canvasLocation" x="1747.3282442748091" y="-194.36619718309859"/>
         </scene>
         <!--Library View Controller-->
         <scene sceneID="ptK-0y-Seh">
@@ -116,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZA-Ae-k6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2437.4045801526718" y="36.619718309859159"/>
+            <point key="canvasLocation" x="3364.1221374045799" y="36.619718309859159"/>
         </scene>
         <!--Create Posts View Controller-->
         <scene sceneID="V3X-SY-RWD">
@@ -246,7 +247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="488-fF-Xzt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744.2748091603053" y="455.63380281690144"/>
+            <point key="canvasLocation" x="2670.9923664122134" y="455.63380281690144"/>
         </scene>
     </scenes>
     <resources>

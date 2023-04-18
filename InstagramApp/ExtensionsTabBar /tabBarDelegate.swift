@@ -40,6 +40,7 @@ class TabBarDelgate : NSObject, UITabBarControllerDelegate {
         if indexViewController == 2 {
             let pageViewController = UIStoryboard(name: Constants.newPostStoryBoardName, bundle: nil).instantiateViewController(withIdentifier: Constants.newPostVCID) as? NewPostViewController
             let navController = UINavigationController(rootViewController: pageViewController ??  UIPageViewController())
+            navController.modalPresentationStyle = .fullScreen
             selectedController.present(navController, animated: true, completion: nil)
             return false
         }
